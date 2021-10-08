@@ -1,0 +1,81 @@
+install.packages("magrittr")
+library(magrittr)
+install.packages("data.table")
+library(data.table)
+library(ggplot2)
+library(dplyr)
+library("tidyverse")
+library("ggplot2")
+
+NYC_data <- read.csv("nyc.csv")
+
+NYC_data$Trip.Duration <- sum(NYC_data$Trip.Duration)
+
+Mode <- function(x) {
+  unique_x <- unique(x)
+  unique_x[which.max(tabulate(match(x, unique_x)))]
+}
+
+week_mode <- NYC_data$Travel_Time
+week_mode <- Mode(week_mode)
+paste("The total travel time for users in different cities is", NYC_data$Trip.Duration)
+
+library(ggplot2)
+qplot(x=Trip.Duration, data=NYC_data, color=I('Black'), fill=I('red'), stat_bin(bins = 30))+ 
+  ggtitle("Total Travel Time for Users in Different Cities") +
+  labs(x = "Total Travel Time") +
+  labs(y = "Users")
+
+summary(NYC_data)
+
+
+
+#------------------------------------------------------------------------
+
+washington_data = read.csv('washington.csv')
+
+washington_data$Trip.Duration <- sum(washington_data$Trip.Duration)
+
+Mode <- function(x) {
+  unique_x <- unique(x)
+  unique_x[which.max(tabulate(match(x, unique_x)))]
+}
+
+week_mode <- washington_data$Travel_Time
+week_mode <- Mode(week_mode)
+paste("The total travel time for users in Chicago is", washington_data$Trip.Duration)
+
+library(ggplot2)
+qplot(x=Trip.Duration, data=washington_data, color=I('Black'), fill=I('red'), stat_bin(bins = 30))+ 
+  ggtitle("Total Travel Time for Users in Washington") +
+  labs(x = "Total Travel Time") +
+  labs(y = "Users")
+
+summary(washington_data)
+
+
+#----------------------------------------------------------------------------------------------------
+
+chicago_data = read.csv('chicago.csv')
+
+chicago_data$Trip.Duration <- sum(chicago_data$Trip.Duration)
+
+Mode <- function(x) {
+  unique_x <- unique(x)
+  unique_xx[which.max(tabulate(match(x, unique_x)))]
+}
+
+week_mode <- chicago_data$Travel_Time
+week_mode <- Mode(week_mode)
+paste("The total travel time for users in Chicago is", chicago_data$Trip.Duration)
+
+library(ggplot2)
+qplot(x=Trip.Duration, data=chicago_data, color=I('Black'), fill=I('red'), stat_bin(bins = 30))+ 
+  ggtitle("Total Travel Time for Users in Chicago") +
+  labs(x = "Total Travel Time") +
+  labs(y = "Users")
+
+summary(chicago_data)
+
+total_time <-merge(NYC_data, washington_data, chicago_data, by = Trip.Duration)
+
