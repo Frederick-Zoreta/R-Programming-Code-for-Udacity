@@ -1,0 +1,78 @@
+NYC_Days = read.csv('nyc.csv')
+
+install.packages("magrittr")
+library(magrittr)
+install.packages("data.table")
+library(data.table)
+library(ggplot2)
+library(dplyr)
+
+# Adding a new column such as 'Weekday' would be beneficial with this format.
+NYC_Days$Weekday <- format(as.Date(NYC_Days$Start.Time), "%A")
+
+#calculate the mode of the weekdays
+weekDays_mode <- NYC_Days$Weekday
+weekDays_mode <- mode(weekDays_mode)
+
+weekDays_mean <- NYC_Days$Weekday
+weekDays_mean <- mean(weekDays_mean)
+
+weekDays_median <- NYC_Days$Weekday
+weekDays_median <- median(weekDays_median)
+
+paste("The most Common Day of Week in YOUR_CITY city is: ", weekDays_mode)
+qplot(x=Weekday,data= NYC_Days, color=I('Black'),fill=I(' dark green'))+
+  ggtitle("Histogram of YOUR_CITY Usage (Weekday)") +
+  labs(x = "Weekdays")+
+  labs(y = "Count of Users")
+
+
+#----------------------------------------------------------------------------------------#
+
+Wash_Days = read.csv('washington.csv')
+#This will add a new column (Weekday) to the dataframe with the specified format.
+
+Wash_Days$Weekday <- format(as.Date(Wash_Days$Start.Time), "%A")
+
+#calculate the mode of the weekdays
+weekDays_mode <- Wash_Days$Weekday
+weekDays_mode <- mode(weekDays_mode)
+
+weekDays_mean <- Wash_Days$Weekday
+weekDays_mean <- mean(weekDays_mean)
+
+weekDays_median <- Wash_Days$Weekday
+weekDays_median <- median(weekDays_median)
+
+
+paste("The most Common Day of Week in YOUR_CITY city is: ", weekDays_mode)
+qplot(x=Weekday,data= Wash_Days, color=I('Black'),fill=I('blue'))+
+  ggtitle("Histogram of YOUR_CITY Usage (Weekday)") +
+  labs(x = "Weekdays")+
+  labs(y = "Count of Users")
+
+
+
+#------------------------------------------------------------------------------------------ # 
+
+Chicago_Days = read.csv('chicago.csv')
+#This will add a new column (Weekday) to the dataframe with the specified format.
+
+Chicago_Days$Weekday <- format(as.Date(Chicago_Days$Start.Time), "%A")
+
+#calculate the mode of the weekdays
+weekDays_mode <- Chicago_Days$Weekday
+weekDays_mode <- mode(weekDays_mode)
+
+weekDays_mean <- Chicago_Days$Weekday
+weekDays_mean <- mean(weekDays_mean)
+
+weekDays_median <- Chicago_Days$Weekday
+weekDays_median <- median(weekDays_median)
+
+
+paste("The most Common Day of Week in YOUR_CITY city is: ", weekDays_mode)
+qplot(x=Weekday,data= Wash_Days, color=I('Black'),fill=I('orange'))+
+  ggtitle("Histogram of YOUR_CITY Usage (Weekday)") +
+  labs(x = "Weekdays")+
+  labs(y = "Count of Users")
